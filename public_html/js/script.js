@@ -68,7 +68,7 @@ btnLeer.addEventListener("click", function () {
 
 
 function createTable(matrix) {
- let table = '<table><thead><tr><th>ID </th><th>CPU Time</th><th>I/O Time</th></tr></thead><tbody>';
+ let table = '<table border="1" align="center"><thead><tr><th>ID </th><th>CPU Time</th><th>I/O Time</th></tr></thead><tbody>';
   for (let i = 0; i < matrix.length; i++) {
     table += '<tr><td>' + matrix[i][0] + '</td><td>' + matrix[i][1] + '</td><td>' + matrix[i][2] + '</td></tr>';
   }
