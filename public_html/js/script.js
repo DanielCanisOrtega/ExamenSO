@@ -5,21 +5,23 @@
 
 
 const btnAgregar = document.getElementById("btnAgregar");
+const btnLeer = document.getElementById("btnLeer");
+
 const contenedorCampos = document.getElementById("contenedorCampos");
 const contenedorUni = document.getElementById("contenedorUni");
-const contenedorMulti = document.getElementById("contenedorMulti");
+//const contenedorMulti = document.getElementById("contenedorMulti");
 //Matriz que contendrá los datos leídos en los input-text
 let matrizDatos=[];
 
 btnAgregar.addEventListener("click", function () {
   const divCampos = document.createElement("div");
 
-  for (let i = 1; i <= 3; i++) {
+  //for (let i = 1; i <= 3; i++) {
     const inputCampo = document.createElement("input");
     inputCampo.type = "text";
-    inputCampo.name = `campo${i}`;
-    var m="";
-    switch(i){
+    inputCampo.name = `campo`;
+    var m="1,2,IO...";
+    /*switch(i){
         
             case 1: m="Input Process ID";
                 break;
@@ -28,7 +30,7 @@ btnAgregar.addEventListener("click", function () {
                 
                 case 3: m="Input I/O Time";
                 break;
-    }
+    }*/
     
     inputCampo.placeholder=m;
     divCampos.appendChild(inputCampo);
@@ -85,9 +87,9 @@ btnUni.addEventListener("click", function () {
     contenedorUni.appendChild(nuevoParrafo);
 });
 
-btnMulti.addEventListener("click", function () {
+/*btnMulti.addEventListener("click", function () {
      const nuevoParrafo = document.createElement("p");
     const textoParrafo = document.createTextNode("A table for Multiprogramming is printed below.");
     nuevoParrafo.appendChild(textoParrafo);
     contenedorMulti.appendChild(nuevoParrafo);
-});
+});*/
