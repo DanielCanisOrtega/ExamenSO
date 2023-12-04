@@ -4,92 +4,65 @@
  */
 
 
-const btnAgregar = document.getElementById("btnAgregar");
-const btnLeer = document.getElementById("btnLeer");
+let PROCESS = [];
+let cyclesDispatcher=0;
+let cyclesInterrupts=0;
 
-const contenedorCampos = document.getElementById("contenedorCampos");
-const contenedorUni = document.getElementById("contenedorUni");
-//const contenedorMulti = document.getElementById("contenedorMulti");
-//Matriz que contendrá los datos leídos en los input-text
-let matrizDatos=[];
+function addProcess() {
+    const inputElement = document.getElementById('processInput');
 
-btnAgregar.addEventListener("click", function () {
-  const divCampos = document.createElement("div");
+    const infoProcess = inputElement.value.trim();
 
-  //for (let i = 1; i <= 3; i++) {
-    const inputCampo = document.createElement("input");
-    inputCampo.type = "text";
-    inputCampo.name = `campo`;
-    var m="1,2,IO...";
-    /*switch(i){
-        
-            case 1: m="Input Process ID";
-                break;
-                case 2: m="Input CPU Time";
-                break;
-                
-                case 3: m="Input I/O Time";
-                break;
-    }*/
-    
-    inputCampo.placeholder=m;
-    divCampos.appendChild(inputCampo);
-  }
+    if (infoProcess !== '') {
+        PROCESS.push(infoProcess);
+        inputElement.value = '';
+        document.getElementById("size").textContent = PROCESS.length;
 
-  contenedorCampos.appendChild(divCampos);
-});
+    }
+}
 
+function showR() {
+    const outBody = document.getElementById('outBody');
+    outBody.innerHTML = '';
 
+    for (let i = 0; i < PROCESS.length; i++) {
+        const Out = procesarinfoProcess(PROCESS[i]);
 
-btnLeer.addEventListener("click", function () {
-  const camposTexto = document.querySelectorAll("input[type=text]");
+        const row = document.createElement('tr');
+        const cellinfoProcess = document.createElement('td');
+        const cellOut = document.createElement('td');
 
-  const filaTabla = document.createElement("tr");
-  const celdaIdProceso = document.createElement("td");
-  const celdaTiempoCPU = document.createElement("td");
-  const celdaTiempoIO = document.createElement("td");
-  
-  let filas=camposTexto.length/3;
-  let col=0;
-  let j=0;
-  for (let i=0;i<filas;i++)
-  {
-      matrizDatos[i]=[];
-      matrizDatos[i][j]=camposTexto[col].value;
-      matrizDatos[i][j+1]=camposTexto[col+1].value;
-      matrizDatos[i][j+2]=camposTexto[col+2].value;
-      col+=3;
-      
-      
-  }
-  window.alert("The data read dynamically in the input-text is loaded into an array named matrizDatos of size nx3. \n You can use this array to solve your requirements. ");
-  console.log(matrizDatos);
-  createTable(matrizDatos);
-});
+        cellinfoProcess.textContent = "P-"+i;
+        cellOut.textContent = PROCESS[i];
 
+        row.appendChild(cellinfoProcess);
+        row.appendChild(cellOut);
 
+        outBody.appendChild(row);
+    }
+}
 
-function createTable(matrix) {
- let table = '<table border="1" align="center"><thead><tr><th>ID </th><th>CPU Time</th><th>I/O Time</th></tr></thead><tbody>';
-  for (let i = 0; i < matrix.length; i++) {
-    table += '<tr><td>' + matrix[i][0] + '</td><td>' + matrix[i][1] + '</td><td>' + matrix[i][2] + '</td></tr>';
-  }
-  table += '</tbody></table>';
-  document.getElementById('tabla').innerHTML = table;
+function procesarinfoProcess(infoProcess) {
+    // Aquí puedes realizar cualquier procesamiento necesario en la infoProcess
+    // En este ejemplo, simplemente devolvemos la longitud de la infoProcess
+    return infoProcess.length;
+}
+
+function dispatcher(){
+    document.getElementById("outDistpatcher").textContent = "Must print the dispatcher run table";
 }
 
 
+ function readAndDisplayData() {
+      // read window :
+      cyclesDispatcher = prompt("Dispatcher Cycles:");
+      cyclesInterrupts = prompt("Interrupts Cycles:");
+      
+      
 
-btnUni.addEventListener("click", function () {
-     const nuevoParrafo = document.createElement("p");
-    const textoParrafo = document.createTextNode("A table for Uniprogramming is printed below.");
-    nuevoParrafo.appendChild(textoParrafo);
-    contenedorUni.appendChild(nuevoParrafo);
-});
-
-/*btnMulti.addEventListener("click", function () {
-     const nuevoParrafo = document.createElement("p");
-    const textoParrafo = document.createTextNode("A table for Multiprogramming is printed below.");
-    nuevoParrafo.appendChild(textoParrafo);
-    contenedorMulti.appendChild(nuevoParrafo);
-});*/
+      // Show data
+      document.getElementById("result").innerHTML = `
+        <p>Dispatcher Cycles: ${cyclesDispatcher}</p>
+        <p>Interrupts Cycles: ${cyclesInterrupts}</p>
+      `;
+    }
